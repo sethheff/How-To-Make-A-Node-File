@@ -49,6 +49,8 @@ HOW TO CREATE AN EXPRESS APP
 
 then from your local terminal, run 
 
+1-5. Add a .js file
+
 2. npm i express to install express
 
 once installed, it will add a 'dependencies' object in your json file. It tells you what your express version is. It also adds a package-lock.json file which contains the files needed for express.
