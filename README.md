@@ -41,3 +41,39 @@ console.log("Hello world!")
 To run a file in node via the command line, type node [file name here].
 node index.js
 Congratulations, you've created and run your first Node program! Let's learn more about how Node is used in the wild (and eventually, in the web-development context).
+
+
+HOW TO CREATE AN EXPRESS APP 
+
+1. CD into your directory and run.. npm init -y to create a json file inside our document.
+
+then from your local terminal, run 
+
+2. npm i express to install express
+
+once installed, it will add a 'dependencies' object in your json file. It tells you what your express version is. It also adds a package-lock.json file which contains the files needed for express.
+
+Your node_modules file is too big to upload all the time. Because of this we want to add a new file called .gitignore
+
+3. add .gitignore file and add (in plain text) the name of the files you dont want to send to git .
+
+4. add node_modules to .gitignore
+
+5. To add a hello world home route write,,,
+
+'''
+app.get('/', (req,res)=>{
+    res.send('Hello, World!')
+    
+})
+
+app.listen(8000, () =>{
+    console.log("You're listening to the smooth sounds of port 8000.")
+})
+'''
+
+app.get(,) is how you connect to the domain you want (ie localhost:8000), after working on a local server in private
+
+the '/' portion of the app.get file is called a URL route
+
+example: https://www.reddit.com (= base url) /search (= url pattern) ?q=cute%20puppies (= url string)
