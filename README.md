@@ -61,7 +61,7 @@ Your node_modules file is too big to upload all the time. Because of this we wan
 
 4. add node_modules to .gitignore
 
-5. To add a hello world home route write,,,
+5. To add a hello world home route write, add to your js file: 
 
 '''
 app.get('/', (req,res)=>{
@@ -69,8 +69,10 @@ app.get('/', (req,res)=>{
     
 })
 
+// to get your file to listen to a particular port 
+
 app.listen(8000, () =>{
-    console.log("You're listening to the smooth sounds of port 8000.")
+    console.log("You're listening to the smooth sounds of port 8000.") 
 })
 '''
 
@@ -79,3 +81,5 @@ app.get(,) is how you connect to the domain you want (ie localhost:8000), after 
 the '/' portion of the app.get file is called a URL route
 
 example: https://www.reddit.com (= base url) /search (= url pattern) ?q=cute%20puppies (= url string)
+
+6. Run nodemon in your local terminal to check express connection and/or go to browser and look up localhost:8000
