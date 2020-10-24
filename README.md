@@ -152,8 +152,140 @@ Test it out to see if your HTML shows up!
 Make sure to do this for all three routes. Now check to see that your html is coming through on the browser.
 
 
+---- TEMPLATES ----
 
+Pre-reqs:
 
+Express Personal Website from views lesson
+
+Template Engines
+
+The downside to this method is that we are only sending HTML files, but what if we want to customize what's on the page? On the front-end, we could manipulate the DOM with Javascript, that's certainly an option! But what if we want to display data that we pull from a database? Template engines allow us to inject values into the HTML, and even script logic into the HTML. This will be extremely useful for building in CRUD functionality and full stack apps in general. docs
+EJS: Embedded Javascript
+
+There are several javascript template engines for express, one of the most popular of which, is EJS, available via npm. Let's update our express personal website views with EJS.
+
+Install EJS
+
+Add EJS to your personal website project using npm:
+```npm i ejs```
+
+Set the view engine to EJS
+
+Above your routes, add ```app.set(name, value) (docs)``` where the name is view engine and the value is ejs.
+```
+app.set('view engine', 'ejs');
+```
+This tells express that we'll be using ejs as our view engine.
+Adapt your routes to ejs
+
+1. Rename the .html files to .ejs files.
+2. Replace your res.sendFile(<absolute path>) statements with res.render(<file name>) statements.
+3. Ejs assumes a lot about the path to the template files, so as long as they are nested in a views folder and have .ejs extensions, you can simply pass the filename (no extension, though it wont break it if you include it) into res.render().
+Your home route should look like this:
+app.get('/', (req, res)=>{
+  res.render('index.ejs');
+});
+    
+Note: you can even leave off the .ejs because express knows to look for ejs files.
+
+app.get('/', (req, res)=>{
+  res.render('index');
+});
+
+The Cool Part: Templating with Variables
+
+Templating with variables means we can pass in an object to res.render() and access the values stored in it as variables inside the ejs template.
+This is best demonstrated with an example. Create an object with at least one key-value pair and pass that object in as the second argument to the render function in one of your routes:
+
+index.js
+
+app.get('/', function(req, res) {
+  res.render('index', {name: "Sterling Archer", age: 35});
+});
+
+We now have access to a name variable inside our index.ejs file! We can access this variable by embedding it into the html using this notation: <%= embedded js goes here %>.
+
+For example: index.ejs
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home Page</title>
+  </head>
+  <body>
+    <h1>Hello, <%= name %>!</h1>
+  </body>
+</html>
+```
+The any JavaScript can be embedded using the <% %> tags. The addition of the = sign on the opening tag means that a value will be printed to the screen.
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home Page</title>
+  </head>
+  <body>
+    <h1>Hello, <%= name %>!</h1>
+    <% let dogAge = age*7 %>
+    <h2>You are <%= dogAge %> in dog years.</h2>
+  </body>
+</html>
+```
+<% %> without the = will not print out the expression, but it will execute it. This comes in handy for if statements and loops.
+This doesn't only apply to primitive variables. We can even include variable declarations and iterators using ejs.
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home Page</title>
+  </head>
+  <body>
+    <h1>Hello, <%= name %>!</h1>
+    <% let dogAge = age*7 %>
+    <h2>You are <%= dogAge %> in dog years.</h2>
+    <% let status %>
+    <%if (dogAge<100) {%>
+      <% status = 'young' %>
+    <%} else {%>
+      <% status = 'old' %>
+    <% } %>
+    <h3>This means you are <%=status%>!</h3>
+  </body>
+</html>
+```
+
+Notice that ejs requires ejs tags (<% %>, also called alligators) around each line of the javascript.
+
+Partials
+
+Partials can be used to modularize views and reduce repetition. A common pattern is to move the header and footer of a page into separate views, or partials, then render them on each page.
+
+Create the partials example
+
+In the main directory of your project, create a partials folder that includes a header.ejs file.
+```
+partials/header.ejs
+  <header>
+    <img src="http://placekitten.com/500/500">
+  </header>
+Include your partial
+index.ejs
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home Page</title>
+  </head>
+  <body>
+
+    <%- include('../partials/header.ejs') %>
+
+    <h1>Hello, <%= name %>!</h1>
+.
+.
+.
+
+``` 
 SET UP SEQUELIZE 
 
 
