@@ -683,18 +683,22 @@ In this function, we specify any relations/associations (one to one, one to many
 
 Running the migration
 
-To run the migration, use the following command.
-sequelize
-
-db:migrate
+To run the migration, use the following command in your VSCODE terminal:
+```
+sequelize db:migrate
+```
 
 If you need to undo the last migration, this command will undo the last migration that was applied to the database.
-sequelize
 
-db:migrate:undo
+```
+sequelize db:migrate:undo
+```
 
 Use the psql shell to verify that your database and table was created:
+
+```
 psql
 \l
 \c userapp_development
 \dt
+```
