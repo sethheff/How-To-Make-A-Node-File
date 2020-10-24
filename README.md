@@ -99,6 +99,8 @@ Setup part 2 - starting a new node project
 Let's build our first app using Sequelize! First we need to create a node app and include our dependencies. All in terminal:
 Create a new folder and add an index.js and .gitignore and initialize the repository
 
+
+```
 mkdir userapp
 
 cd userapp
@@ -108,15 +110,17 @@ npm init -y
 touch index.js
 
 echo "node_modules" >> .gitignore
+``` 
 
 Add/save dependencies (sequelize needs pg for Postgres)
 
+```
 npm install pg sequelize
-
+```
 Initialize a sequelize project
-
+```
 sequelize init
-
+```
 For your historical reference...
 
 WARNING (2017) Edited (2018): At one point, sequelize-cli, sequelize, and pg modules were not playing nicely with each other. Luckily, this issue (for version Sequelize 4) has been resolved and we can resume using the current versions of both. In the future, be mindful that many modules you use are maintained by individual third parties and issues like this may come up!
